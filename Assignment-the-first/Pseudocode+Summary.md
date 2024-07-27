@@ -39,7 +39,7 @@ before and after quality filtration. The files must be demultiplexed to accompli
 
 ### Potential Functions
 
-```
+```python
 def getIndexes(fileName : str) -> dict:
 	'''Takes in file name, returns a dictionary of indexes'''
 
@@ -48,7 +48,7 @@ Input: indexes.txt
 Expected output: index[indexSequence]
 ```
 
-```
+```python
 def getReverseComplement(sequence : str) -> str:
 	'''Takes in a sequence, returns the reverse complement of input sequence'''
 
@@ -57,7 +57,7 @@ Input: "AC"
 Expected output: "TG"
 ```
 
-```
+```python
 def averageQuality(sequence : str) -> float:
 	'''Takes in sequence, returns average quality score'''
 
@@ -66,7 +66,7 @@ Input: "I"
 Expected output: 40.0
 ```
 
-```
+```python
 def outputLocationExists(location : str) -> boolean:
 	'''Takes in an output directory location, return True if directory exists.
 		Return False if the directory does not exist'''
@@ -76,7 +76,7 @@ Input: "output"
 Expected output: "False"
 ```
 
-```
+```python
 def handleInputs(args : object) -> None:
 	'''Takes in argparse.Namespace object, validates input flags. Throws execptions
 		when: files are not found or not readable, output directory exists, Q-score
@@ -105,79 +105,91 @@ Expected output: n/a or Exception
 
 ## Pseudocode
 
-```
+```python
 
 Take in command line arguements 
 
-Process arguements:
-	if output directory exists
-		throw exception
-	else 
-		create output directory
+Process arguements {
+
+	if output directory exists{
+		# throw exception
+	}
+	else { 
+		# create output directory
+	}
 		
-	if input files not readable or don't exist
-		throw exception
+	if input files not readable or dont exist {
+		# throw exception
+	}
+}
 
 
-Declare global variables for stat reporting
-	Matched index record count
-	Matched index average quality score
-	Matched index percentage
-	GC content
-	
-	Index-hopping record count
-	Index-hopping average quality score
-	Index-hopping percentage
+Declare global variables for stat reporting 
 
-	Unknown index record count
-	Unknown index average quality score
-	Unknown index percentage
-	
-	Low quality record count
-	Low quality average quality score
-	Low quality percentage
+# Matched index record count
+# Matched index average quality score
+# Matched index percentage
+# GC content
 
-	Total record count 
+# Index-hopping record count
+# Index-hopping average quality score
+# Index-hopping percentage
+
+# Unknown index record count
+# Unknown index average quality score
+# Unknown index percentage
+
+# Low quality record count
+# Low quality average quality score
+# Low quality percentage
+
+# Total record count 
 
 Get indexes from valid index file
 
-Loop over R1, R2, R3, R4 :
+Loop over R1, R2, R3, R4 {
 
-	if R2 index or R3 index contain "N"
-	
-		Concat index-pair to header lines
-		
-		Write R1 and R4 records to low-quality/unknown output file
+	if R2 index or R3 index contain "N" {
 
-	else 
-		get reverse complement of R3 index sequence
+		# Concat index-pair to header lines
 		
-		if R2 and R3-RC index sequences match
+		# Write R1 and R4 records to low-quality/unknown output file
+	}
+	else {
+
+		# get reverse complement of R3 index sequence
 		
-			if matched sequence is a valid index (contained in valid index file)
-			
-				if R1 and R4 sequences pass Q-score cutoff
+		if R2 and R3-RC index sequences match {
+
+			if matched sequence is a valid index (contained in valid index file) {
+
+				if R1 and R4 sequences pass Q-score cutoff {
+
+					# Concat index-pair to header lines
+					
+					# Write R1 and R4 records to valid output file
+				}
+				else {
+
+					# Concat index-pair to header lines
+					
+					# Write R1 and R4 records to low-quality/unknown output file
+				}
+			}		
+			else {
+
+				# Concat index-pair to header lines
 				
-					Concat index-pair to header lines
-					
-					Write R1 and R4 records to valid output file
-					
-				else
-				
-					Concat index-pair to header lines
-					
-					Write R1 and R4 records to low-quality/unknown output file
-					
-			else
+				# Write R1 and R4 records to low-quality/unknown output file
+			}	
+		}
+		else {
+
+			# Concat index-pair to header lines
 			
-				Concat index-pair to header lines
-				
-				Write R1 and R4 records to low-quality/unknown output file
-			
-		else
-		
-			Concat index-pair to header lines
-			
-			Write R1 and R4 records to index-hopping file
+			# Write R1 and R4 records to index-hopping file
+		}
+	}
+}
 
 ```
