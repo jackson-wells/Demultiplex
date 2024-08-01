@@ -24,15 +24,30 @@ To determine phred encoding (check if characters not in phred+64 exist):
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
 
+    ![R1_hist.png](R1_hist.png)
+
+    ![R2_hist.png](R2_hist.png)
+    
+    ![R3_hist.png](R3_hist.png)
+
+    ![R4_hist.png](R4_hist.png)
+
     2. What is a good quality score cutoff for index reads and biological read pairs to utilize for sample identification and downstream analysis, respectively?
     ```
-
+    33 for indexes, 35 for read pairs. This will leave us with mostly high-scoring sequences and thusly high confidence in downstream interpretations. 
     ```
 
 
     3. How many indexes have undetermined (N) base calls? (Utilize your command line tool knowledge. Submit the command(s) you used.
     ```
-    zcat <file> | sed -n '0~2p' | grep "N" | wc -l
+    zcat <file> | sed -n '2~4p' | grep -c "N" 
+
+    R2: 3976613
+
+    R3: 3328051
+
+    Total: 7304664
+
     ```
     
 ## Part 2
