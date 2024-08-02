@@ -44,8 +44,8 @@ def getIndexes(fileName : str) -> dict:
 	'''Takes in file name, returns a dictionary of indexes'''
 
 	return tempDict
-Input: indexes.txt
-Expected output: index[indexSequence]
+Input: "./indexes.txt"
+Expected output: indexes
 ```
 
 ```python
@@ -72,7 +72,7 @@ def outputLocationExists(location : str) -> boolean:
 		Return False if the directory does not exist'''
 
 	return tempFlag
-Input: "output"
+Input: "/output"
 Expected output: "False"
 ```
 
@@ -84,7 +84,7 @@ def handleInputs(args : object) -> None:
 
 	return
 Input: args
-Expected output: n/a or Exception
+Expected output: None or Exception
 ```
 ## Additional Needs
 
